@@ -23,16 +23,18 @@ impl Default for EditCommandsPopup {
     }
 }
 
-pub struct ErrorPopup {
+pub struct UiPopup {
     pub message: String,
+    pub popup_title: String,
     pub visible: bool,
 }
 
-impl ErrorPopup {
-    pub fn new() -> Self {
-        ErrorPopup {
+impl UiPopup {
+    pub fn new(popup_tile: String) -> Self {
+        UiPopup {
             message: String::new(),
             visible: false,
+            popup_title: popup_tile,
         }
     }
 
@@ -46,9 +48,9 @@ impl ErrorPopup {
     }
 }
 
-impl Default for ErrorPopup {
+impl Default for UiPopup {
     fn default() -> Self {
-        Self::new()
+        Self::new("".to_owned())
     }
 }
 
@@ -226,7 +228,7 @@ pub fn render_title_select_popup(f: &mut Frame, popup: &TitleSelectPopup) {
     f.render_widget(paragraph, area);
 }
 
-pub fn render_error_popup(f: &mut Frame, popup: &ErrorPopup) {
+pub fn render_ui_popup(f: &mut Frame, popup: &UiPopup) {
     if !popup.visible {
         return;
     }
@@ -240,7 +242,7 @@ pub fn render_error_popup(f: &mut Frame, popup: &ErrorPopup) {
             Block::default()
                 .borders(Borders::ALL)
                 .border_style(Style::default().fg(Color::Red))
-                .title("Error - Esc to exit"),
+                .title(format!("{} - Esc to exit", popup.popup_title)),
         );
     f.render_widget(text, area);
 }
