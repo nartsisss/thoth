@@ -1,4 +1,9 @@
 
+## [0.1.68] - 2024-12-17
+
+- Improvement: Adding popup after copying a block (#16)
+
+
 ## [0.1.67] - 2024-12-17
 
 - Feature: Add Load Backup command if the original file gets corrupted (#15)
