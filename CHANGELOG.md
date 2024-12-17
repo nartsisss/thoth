@@ -1,4 +1,9 @@
 
+## [0.1.67] - 2024-12-17
+
+- Feature: Add Load Backup command if the original file gets corrupted (#15)
+
+
 ## [0.1.66] - 2024-10-04
 
 - Documentation: Indicating that the save backup feature is completed (#14)
