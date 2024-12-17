@@ -1,4 +1,4 @@
-use crate::EditorClipboard;
+use crate::{get_save_backup_file_path, EditorClipboard};
 use anyhow::{bail, Result};
 use crossterm::{
     event::{self, DisableMouseCapture, EnableMouseCapture, KeyCode, KeyModifiers},
@@ -39,8 +39,9 @@ pub struct UIState {
 impl UIState {
     pub fn new() -> Result<Self> {
         let mut scrollable_textarea = ScrollableTextArea::new();
-        if get_save_file_path().exists() {
-            let (loaded_textareas, loaded_titles) = load_textareas()?;
+        let main_save_path = get_save_file_path();
+        if main_save_path.exists() {
+            let (loaded_textareas, loaded_titles) = load_textareas(main_save_path)?;
             for (textarea, title) in loaded_textareas.into_iter().zip(loaded_titles) {
                 scrollable_textarea.add_textarea(textarea, title);
             }
@@ -303,6 +304,11 @@ fn handle_normal_input(
                     &state.scrollable_textarea.textareas,
                     &state.scrollable_textarea.titles,
                     get_save_file_path(),
+                )?;
+                save_textareas(
+                    &state.scrollable_textarea.textareas,
+                    &state.scrollable_textarea.titles,
+                    get_save_backup_file_path(),
                 )?;
                 return Ok(true);
             }
