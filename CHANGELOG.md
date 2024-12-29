@@ -1,4 +1,9 @@
 
+## [0.1.69] - 2024-12-29
+
+- Documentation: Adding load_backup command to README (#17)
+
+
 ## [0.1.68] - 2024-12-17
 
 - Improvement: Adding popup after copying a block (#16)
