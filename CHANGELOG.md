@@ -1,4 +1,9 @@
 
+## [0.1.70] - 2024-12-30
+
+- Documentation: Fixing a typo and adding instructions in README (#18)
+
+
 ## [0.1.69] - 2024-12-29
 
 - Documentation: Adding load_backup command to README (#17)
